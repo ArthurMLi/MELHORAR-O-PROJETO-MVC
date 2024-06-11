@@ -3,7 +3,7 @@
 include_once 'config/database.php';
 include_once 'controllers/UserController.php';
 include_once 'controllers/TaskController.php';
-include_once 'views/home.php';
+
 
 $database = new Database();
 $db = $database->getConnection();
@@ -14,18 +14,30 @@ $taskController = new TaskController($db);
 // Obter a ação e o ID (se aplicável) dos parâmetros da URL
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : null;
-
+$start = true;
 // Determinar a ação do usuário
 
 switch ($action) {
     // Metodos do usuario
+    case 'users':
+        $users = $userController->index();
+        include_once 'views/user/index.php';
+        $start = false;
+        break;
+
+    case 'tasks':
+        $tasks = $taskController->index();
+        include_once 'views/task/index.php';
+        $start = false;
+        break;
+
     case 'createU':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             $email = $_POST['email'];
             $message = $userController->create($name, $email);
             echo $message;
-            echo '<a href="index.php">Back to User List</a>';
+            echo '<a href="index.php?action=users">Back to User List</a>';
         } else {
             include 'views/user/create.php';
         }
@@ -70,6 +82,8 @@ switch ($action) {
             echo 'User ID is required.';
         }
         break;
+
+    case 'userlist':
 
     // Metodos do tarefas
         
@@ -124,9 +138,10 @@ switch ($action) {
                 echo 'Task ID is required.';
             }
             break;
-    
-    default:
-        include_once 'views/home.php';
+        case null:
+            include 'views/home.php';
+            break;
+    default:    
         break;
 }
 ?>

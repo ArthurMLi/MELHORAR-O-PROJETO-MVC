@@ -48,5 +48,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <a href="index.php">Voltar para o inicio</a>
 </body>
 </html>
