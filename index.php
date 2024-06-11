@@ -3,12 +3,14 @@
 include_once 'config/database.php';
 include_once 'controllers/UserController.php';
 include_once 'controllers/TaskController.php';
+include_once 'views/home.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
 $userController = new UserController($db);
 $taskController = new TaskController($db);
+
 // Obter a ação e o ID (se aplicável) dos parâmetros da URL
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -124,10 +126,7 @@ switch ($action) {
             break;
     
     default:
-        $users = $userController->index();
-        include 'views/user/index.php';
-        $tasks = $taskController->index();
-        include 'views/task/index.php';
+        include_once 'views/home.php';
         break;
 }
 ?>
