@@ -11,8 +11,8 @@
     <h1>Bem vindo ao sistema</h1>
     <nav>
         <ul>
-            <p><a href="index.php?action=users" type="button" class="btn btn-primary">Gerenciar Usuarios</a></p>
-            <p><a href="index.php?action=tasks"type="button" class="btn btn-primary">Gerenciar Tarefas</a></p>
+            <p><a href="../index.php?action=users" type="button" class="btn btn-primary">Gerenciar Usuarios</a></p>
+            <p><a href="../index.php?action=tasks"type="button" class="btn btn-primary">Gerenciar Tarefas</a></p>
         </ul>
     </nav>
 </body>

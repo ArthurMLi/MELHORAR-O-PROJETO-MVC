@@ -139,7 +139,7 @@ switch ($action) {
             }
             break;
         case null:
-            include 'views/home.php';
+            include 'views/login.php';
             break;
     default:    
         break;
